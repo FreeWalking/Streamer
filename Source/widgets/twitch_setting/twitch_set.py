@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # @Date    : 2016-03-15 16:39:32
 # @Author  : Your Name (you@example.org)
@@ -20,7 +20,7 @@ class Twitch_set(QDialog, Ui_Twitch_settings):
     def __init__(self):
         super(Twitch_set, self).__init__()
         self.setupUi(self)
-        self.setStyleSheet(open('style.qss').read())
+        self.setStyleSheet(open('static/style.qss').read())
         self.buttonBox.button(QDialogButtonBox.Save).setText("Сохранить")
         self.buttonBox.button(QDialogButtonBox.Cancel).setText("Отмена")
         self.dict_settings = {}

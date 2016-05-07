@@ -22,7 +22,7 @@ class Help_class(QDialog, Ui_DialogHelp):
         super(Help_class, self).__init__()
         self.setupUi(self)
         self.path = 'widgets/help'
-        self.setStyleSheet(open('style.qss').read())
+        self.setStyleSheet(open('static/style.qss').read())
         self.buttonBox.button(QDialogButtonBox.Cancel).setText("Выход")
         # self.create_help()
         self.help_treeWidget.itemPressed.connect(self.show_help)

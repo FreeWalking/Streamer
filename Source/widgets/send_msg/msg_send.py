@@ -22,7 +22,7 @@ class Msg_send(QDialog, Ui_DialogMsgSend):
         self.setupUi(self)
         self.buttonBox.button(QDialogButtonBox.Ok).setText("Отправить")
         self.buttonBox.button(QDialogButtonBox.Cancel).setText("Отмена")
-        self.setStyleSheet(open('style.qss').read())
+        self.setStyleSheet(open('static/style.qss').read())
         self.show_msg()
         self.close()
         # self.buttonBox.accepted.connect(self.send_message)

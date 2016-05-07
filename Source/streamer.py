@@ -15,14 +15,12 @@ import time
 import urllib.request
 import json
 import base64
-from mainWindows import Ui_MainWindow
+from static.mainWindows import Ui_MainWindow
 from widgets.input_link import def_url
 from widgets.twitch_setting import twitch_set
 from widgets.send_msg import msg_send
 from widgets.help import help_func
 from widgets.favorits import favorit
-
-from widgets import input_link.
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -34,7 +32,7 @@ class Streamer(QMainWindow, Ui_MainWindow):
         self.instance = vlc.Instance()
         self.mediaplayer = self.instance.media_player_new()
         self.setupUi(self)
-        self.setStyleSheet(open('style.qss').read())
+        self.setStyleSheet(open('static/style.qss').read())
         self.timer = QTimer(self)
 
         self.palette = self.video_fr.palette()

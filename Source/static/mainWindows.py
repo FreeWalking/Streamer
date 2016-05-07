@@ -372,4 +372,4 @@ class Ui_MainWindow(object):
         self.actionSettings.setText(_translate("MainWindow", "Параметры"))
         self.actionFavorit.setText(_translate("MainWindow", "Избранные каналы"))
 
-import res_rc
+from static import res_rc

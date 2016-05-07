@@ -18,7 +18,7 @@ class Input_stream(QDialog, Ui_Dialog):
     def __init__(self):
         super(Input_stream, self).__init__()
         self.setupUi(self)
-        self.setStyleSheet(open('style.qss').read())
+        self.setStyleSheet(open('static/style.qss').read())
         self.buttonBox.button(QDialogButtonBox.Cancel).setText("Отмена")
         self.buttonBox.accepted.connect(self.check_url)
 

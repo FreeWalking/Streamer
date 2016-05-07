@@ -24,7 +24,7 @@ class Favorits(QDialog, Ui_DialogFavorit):
         self.buttonBox.button(QDialogButtonBox.Save).setText("Сохранить")
         self.buttonBox.button(QDialogButtonBox.Cancel).setText("Отмена")
         self.path = 'setting.json'
-        self.setStyleSheet(open('style.qss').read())
+        self.setStyleSheet(open('static/style.qss').read())
         self.list_fav()
         self.plus_pb.setIcon(QIcon(":/icons/icons/plus.png"))
         self.minus_pb.setIcon(QIcon(":/icons/icons/minus.png"))
