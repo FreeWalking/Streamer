@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # @Date    : 2016-03-17 15:17:51
-# @Author  : Your Name (you@example.org)
-# @Link    : http://example.org
-# @Version : $Id$
+# @Author  : Khoroshihk Arkadiy (khorark@gmail.com)
+# @Link    : http://github.com/khorark
+# @Version : 1.0
 
-import livestreamer
-from twitch.api import v3
-from packages import vlc, irq, myQThread
 import os
 import sys
 import re
@@ -15,15 +12,21 @@ import time
 import urllib.request
 import json
 import base64
+
+import livestreamer
+from twitch.api import v3
+
+from packages import vlc, irq, myQThread
 from static.mainWindows import Ui_MainWindow
 from widgets.input_link import def_url
 from widgets.twitch_setting import twitch_set
 from widgets.send_msg import msg_send
 from widgets.help import help_func
 from widgets.favorits import favorit
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QFileDialog
+from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QPalette, QColor, QPixmap
+
 
 class Streamer(QMainWindow, Ui_MainWindow):
 
@@ -100,10 +103,11 @@ class Streamer(QMainWindow, Ui_MainWindow):
         except KeyError:
             print("In file settings user and pass not set")
 
-
     def about_prog(self):
-        self.messageBox(
-            'Streamer v.1.0 <br> Copyright © 2016 <br> Автор: Khorark <br> Мой GitHub: https://github.com/khorark')
+        self.messageBox("""Streamer v.1.0 <br> Copyright
+                        © 2016 <br> Автор: Khorark
+                        <br\> Мой GitHub:
+                        https://github.com/khorark""")
 
     def error_msg(self):
         msg_err = msg_send.Msg_send()
@@ -131,8 +135,7 @@ class Streamer(QMainWindow, Ui_MainWindow):
         except AttributeError:
             self.data = {}
             self.data['favorit'] = []
-            #json.dump(self.data, open(self.path, 'w'))
-            print ('KeyError maybe )')
+            print('AttributeError')
 
         self.data['favorit'].append(self.url_link)
         json.dump(self.data, open(self.path, 'w'))
@@ -226,7 +229,7 @@ class Streamer(QMainWindow, Ui_MainWindow):
                     if self.url_link in self.data['favorit']:
                         self.love_btn.setDisabled(True)
                 except AttributeError:
-                    print ("Favorits channel not found")
+                    print("Favorits channel not found")
 
                 self.statusbar.showMessage("Получение адреса стрима...")
                 self.streams = livestreamer.streams(self.url_link)
@@ -299,14 +302,14 @@ class Streamer(QMainWindow, Ui_MainWindow):
         self.statusbar.showMessage("Получение информации о канале...")
         self.quality_btn.setDisabled(False)
         self.Twitch_btn.setDisabled(False)
-        if os.path.exists("temp") == False:
+        if not os.path.exists("temp"):
             os.mkdir("temp")
 
         channel = v3.channels.by_name(chan_name)
 
         self.setWindowTitle(channel['status'])
         chan_banner = "temp/{}.png".format(chan_name)
-        if os.path.exists(chan_banner) == False:
+        if not os.path.exists(chan_banner):
             urllib.request.urlretrieve(channel['logo'], chan_banner)
 
         pix = QPixmap(chan_banner)
