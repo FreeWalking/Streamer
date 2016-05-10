@@ -13,6 +13,9 @@ import urllib.request
 import json
 import base64
 
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QFileDialog
+from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QPalette, QColor, QPixmap
 import livestreamer
 from twitch.api import v3
 
@@ -23,9 +26,6 @@ from widgets.twitch_setting import twitch_set
 from widgets.send_msg import msg_send
 from widgets.help import help_func
 from widgets.favorits import favorit
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QFileDialog
-from PyQt5.QtCore import QTimer
-from PyQt5.QtGui import QPalette, QColor, QPixmap
 
 
 class Streamer(QMainWindow, Ui_MainWindow):
